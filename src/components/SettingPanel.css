@@ -1,0 +1,25 @@
+@import "../common/css/common.css";
+
+#setting-panel {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#add-task-btn {
+  color: var(--text);
+  background: var(--bg);
+  border: var(--bg-dark-2);
+  border-style: solid;
+  border-width: 2px;
+}
+#add-task-btn:active,
+#add-task-btn:hover,
+#add-task-btn:focus {
+  color: var(--bg) !important;
+  background: var(--bg-dark-2) !important;
+  border: var(--bg-dark-2) !important;
+  border-style: solid !important;
+  border-width: 2px !important;
+}

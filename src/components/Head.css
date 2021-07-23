@@ -1,0 +1,12 @@
+@import "../common/css/common.css";
+
+.head-section {
+  background-color: None;
+}
+
+.head-section-title {
+  font-size: 48px;
+  color: var(--text-head);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,16 @@
+@import "../common/css/common.css";
+
+#task-panel {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#task-list-label {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#refresh-count-label {
+  font-size: 12px;
+  font-style: italic;
+}

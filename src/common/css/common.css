@@ -1,0 +1,67 @@
+:root {
+  --bg: #f2f2f2;
+  --bg-dark-1: #d9d9d9;
+  --bg-dark-2: #808080;
+  --text: #32221b;
+  --text-head: #004e80;
+
+  --warm-1: #cfcbc9;
+  --warm-2: #c2ada3;
+  --warm-3: #d1a894;
+  --warm-4: #e0a385;
+  --warm-5: #f09e75;
+  --warm-6: #ff9966;
+
+  --cool-1: #afb4b6;
+  --cool-2: #a3b8c2;
+  --cool-3: #94bdd1;
+  --cool-4: #85c2e0;
+  --cool-5: #75c7f0;
+  --cool-6: #66ccff;
+}
+
+.section-block {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.text-input {
+  height: 35px;
+  border: 1px solid var(--bg-dark-1);
+}
+.text-input:focus {
+  outline: none !important;
+  box-shadow: none;
+  border: 1px solid var(--bg-dark-2);
+}
+
+/* Custom link */
+
+.custom-link {
+  color: var(--cool-5);
+}
+
+.custom-link:hover {
+  color: var(--cool-6) !important;
+}
+
+/* Separator */
+
+.sep-dark {
+  height: 3px;
+  background-color: var(--bg-dark-2);
+}
+
+.sep-light {
+  height: 3px;
+  background-color: var(--bg-dark-1);
+}
+
+/* Info text */
+
+.fetching {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-style: italic;
+  color: var(--primary-dark);
+}
