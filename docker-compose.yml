@@ -1,0 +1,11 @@
+version: '3'
+services:
+  photogrammetry-hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: duyyudus/photogrammetry-hub
+    container_name: photogrammetry-hub
+    restart: always
+    ports:
+      - 8000:80
