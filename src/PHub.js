@@ -18,7 +18,7 @@ function fetchData(state, setState) {
   lsTasks(state.endpoint).then((res) => {
     const data = JSON.parse(res);
 
-    setState((s) => ({ tasks: data.data, endpoint: s.endpoint }));
+    setState((s) => ({ tasks: data.data.reverse(), endpoint: s.endpoint }));
   });
 }
 
@@ -35,7 +35,7 @@ function PHub() {
   return (
     <div className="container phub">
       <HeadSection />
-      <BodySection />
+      <BodySection tasks={state.tasks} />
     </div>
   );
 }

@@ -14,3 +14,161 @@
   font-size: 12px;
   font-style: italic;
 }
+
+/* Task item */
+
+.task-item {
+  margin: 10px auto 10px auto;
+  padding: 10px 10px 10px 10px;
+}
+
+.task-item-id {
+  height: 33px;
+  font-size: 22px;
+}
+
+.task-item-current-step {
+  height: 18px;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.task-item-step-in-progress {
+  height: 12px;
+  font-size: 12px;
+}
+
+.task-item-location {
+  font-size: 14px;
+}
+
+/* Task item buttons */
+
+#start-task-btn {
+  width: 70px;
+  color: var(--text);
+  background: var(--cool-3);
+  border: 2px solid var(--cool-3);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+#start-task-btn:hover,
+#start-task-btn:focus,
+#start-task-btn:active {
+  width: 70px;
+  color: var(--text);
+  background: var(--bg);
+  border: 2px solid var(--cool-3);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+#pause-task-btn {
+  width: 70px;
+  color: var(--text);
+  background: var(--bg);
+  border: 2px solid var(--cool-3);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+#pause-task-btn:hover,
+#pause-task-btn:focus,
+#pause-task-btn:active {
+  width: 70px;
+  color: white;
+  background: var(--cool-3);
+  border: 2px solid var(--cool-3);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+#restart-task-btn {
+  width: 70px;
+  color: var(--text);
+  background: var(--bg);
+  border: 2px solid var(--cool-6);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+#restart-task-btn:hover,
+#restart-task-btn:focus,
+#restart-task-btn:active {
+  width: 70px;
+  color: white;
+  background: var(--cool-6);
+  border: 2px solid var(--cool-6);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+#delete-task-btn {
+  width: 70px;
+  color: var(--text);
+  background: var(--bg);
+  border: 2px solid var(--warm-6);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+#delete-task-btn:hover,
+#delete-task-btn:focus,
+#delete-task-btn:active {
+  width: 70px;
+  color: white;
+  background: var(--warm-6);
+  border: 2px solid var(--warm-6);
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+/* Task item checkbox */
+
+.task-item-checkbox-ticked {
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--bg-dark-2);
+  background-color: var(--cool-2);
+  border-radius: 5px;
+}
+.task-item-checkbox-unticked {
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--bg-dark-2);
+  background-color: var(--bg);
+  border-radius: 5px;
+}
+
+.task-item-checkbox-label {
+  font-size: 12px;
+}
+
+/* Progress bar  */
+
+.task-item-progress-bar {
+  height: 33px;
+  border: 1px solid var(--bg-dark-2);
+  border-radius: 3px;
+}
+
+.progress-bar-block {
+  height: 31px;
+  border-radius: 3px;
+}
+.progress-bar-block-1 {
+  background-color: var(--cool-2);
+}
+.progress-bar-block-2 {
+  background-color: var(--cool-3);
+}
+.progress-bar-block-3 {
+  background-color: var(--cool-4);
+}
+.progress-bar-block-4 {
+  background-color: var(--cool-5);
+}
+.progress-bar-block-5 {
+  background-color: var(--cool-6);
+}

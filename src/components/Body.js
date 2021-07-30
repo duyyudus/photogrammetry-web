@@ -9,7 +9,7 @@ export default function BodySection(props) {
   return (
     <div className="container body-section">
       <SettingPanel />
-      <TaskPanel />
+      <TaskPanel tasks={props.tasks} />
     </div>
   );
 }
