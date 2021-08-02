@@ -9,33 +9,37 @@ import "./PHub.css";
 
 const DEF_ENDPOINT = "http://localhost:5000";
 
-/**
- * Fetch task data using REST-APIs
- * @param {Object} state
- * @param {Function} setState
- */
-function fetchData(state, setState) {
-  lsTasks(state.endpoint).then((res) => {
-    const data = JSON.parse(res);
-
-    setState((s) => ({ tasks: data.data.reverse(), endpoint: s.endpoint }));
-  });
-}
-
 function PHub() {
   const [state, setState] = useState({
     tasks: [],
     endpoint: DEF_ENDPOINT,
   });
 
+  const updateEndpoint = (endpoint) => {
+    setState((s) => ({ tasks: s.tasks, endpoint: endpoint }));
+  };
+
+  const refreshTasks = () => {
+    lsTasks(state.endpoint).then((res) => {
+      const data = JSON.parse(res);
+
+      setState((s) => ({ tasks: data.data.reverse(), endpoint: s.endpoint }));
+    });
+  };
+
   useEffect(() => {
-    fetchData(state, setState);
+    refreshTasks();
   }, []);
 
   return (
     <div className="container phub">
       <HeadSection />
-      <BodySection tasks={state.tasks} />
+      <BodySection
+        tasks={state.tasks}
+        endpoint={state.endpoint}
+        updateEndpoint={updateEndpoint}
+        refreshTasks={refreshTasks}
+      />
     </div>
   );
 }

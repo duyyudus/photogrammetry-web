@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import "./TaskPanel.css";
 
 const STEP_NAME_MAP = {
-  0: "Not started",
-  1: "DGN Conversion",
+  0: "Not Started",
+  1: "DNG Conversion",
   2: "Color Correction",
   3: "Prepare RC",
   4: "Mesh Reconstruction",
@@ -114,22 +114,22 @@ function TaskItem(props) {
         <div className="col">
           <div className="row" style={{ marginBottom: 20 }}>
             <div className="col-auto">
-              <TaskId taskId={props.task.task_id} />
+              <TaskId taskId={props.taskData.task_id} />
             </div>
             <div className="col">
-              <ProgressBar step={props.task.step} />
+              <ProgressBar step={props.taskData.step} />
             </div>
             <div className="col">
               <CurrentStep
-                step={props.task.step}
-                stepInProgress={props.task.step_in_progress}
+                step={props.taskData.step}
+                stepInProgress={props.taskData.step_in_progress}
               />
             </div>
           </div>
 
           <div className="row">
             <div className="col">
-              <TaskLocation taskLocation={props.task.task_location} />
+              <TaskLocation taskLocation={props.taskData.task_location} />
             </div>
           </div>
         </div>
@@ -144,10 +144,10 @@ function TaskItem(props) {
               <div
                 type="button"
                 className="btn btn-primary btn-sm"
-                id={props.task.paused ? "start-task-btn" : "pause-task-btn"}
+                id={props.taskData.paused ? "start-task-btn" : "pause-task-btn"}
                 onClick={(e) => {}}
               >
-                {props.task.paused ? "Start" : "Pause"}
+                {props.taskData.paused ? "Start" : "Pause"}
               </div>
             </div>
             <div className="col">
@@ -174,13 +174,13 @@ function TaskItem(props) {
           <div className="row">
             <div className="col">
               <Checkbox
-                ticked={!props.task.require.color_checker}
+                ticked={!props.taskData.require.color_checker}
                 label="Color checker"
               />
             </div>
             <div className="col">
               <Checkbox
-                ticked={!props.task.require.raw_image}
+                ticked={!props.taskData.require.raw_image}
                 label="Raw images"
               />
             </div>
@@ -210,11 +210,12 @@ export default function TaskPanel(props) {
       </div>
       <div className="sep-dark" />
       {props.tasks.map((task) => (
-        <TaskItem task={task} key={"task" + task.task_id} />
+        <TaskItem taskData={task} key={"task" + task.task_id} />
       ))}
     </div>
   );
 }
 TaskPanel.propTypes = {
   tasks: PropTypes.array,
+  refreshTasks: PropTypes.func,
 };

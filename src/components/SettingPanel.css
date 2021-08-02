@@ -23,3 +23,12 @@
   border-style: solid !important;
   border-width: 2px !important;
 }
+
+#add-task-success-alert {
+  color: var(--cool-3);
+  font-weight: bold;
+}
+#add-task-error-alert {
+  color: var(--warm-6);
+  font-weight: bold;
+}

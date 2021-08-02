@@ -8,8 +8,18 @@ import TaskPanel from "./TaskPanel";
 export default function BodySection(props) {
   return (
     <div className="container body-section">
-      <SettingPanel />
-      <TaskPanel tasks={props.tasks} />
+      <SettingPanel
+        endpoint={props.endpoint}
+        updateEndpoint={props.updateEndpoint}
+        refreshTasks={props.refreshTasks}
+      />
+      <TaskPanel tasks={props.tasks} refreshTasks={props.refreshTasks} />
     </div>
   );
 }
+BodySection.propTypes = {
+  endpoint: PropTypes.string,
+  updateEndpoint: PropTypes.func,
+  tasks: PropTypes.array,
+  refreshTasks: PropTypes.func,
+};

@@ -1,3 +1,6 @@
+export const SUCCESS_STATUS = "success";
+export const ERROR_STATUS = "error";
+
 async function _get(url) {
   const response = await fetch(url, {
     method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -35,6 +38,23 @@ async function _post(url) {
 
 export async function addTask(endpoint, taskLocation) {
   const url = `${endpoint}/add_task?task_location=${taskLocation}`;
+  return await _post(url);
+}
+export async function deleteTask(endpoint, taskId) {
+  const url = `${endpoint}/delete_task?task_id=${taskId}`;
+  return await _post(url);
+}
+
+export async function restartTask(endpoint, taskId) {
+  const url = `${endpoint}/restart_task?task_id=${taskId}`;
+  return await _post(url);
+}
+export async function startTask(endpoint, taskId) {
+  const url = `${endpoint}/start_task?task_id=${taskId}`;
+  return await _post(url);
+}
+export async function pauseTask(endpoint, taskId) {
+  const url = `${endpoint}/pause_task?task_id=${taskId}`;
   return await _post(url);
 }
 
