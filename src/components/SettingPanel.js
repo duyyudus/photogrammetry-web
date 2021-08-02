@@ -9,6 +9,7 @@ export default function SettingPanel(props) {
     newTaskLocation: "",
     addTaskSuccess: false,
     showAddTaskResult: false,
+    addTaskResultMessage: "",
   });
 
   return (
@@ -21,15 +22,20 @@ export default function SettingPanel(props) {
             id="add-task-btn"
             onClick={(e) => {
               let addTaskSuccess = false;
+              let message = "";
               addTask(props.endpoint, state.newTaskLocation)
                 .then((res) => {
                   const data = JSON.parse(res);
                   // console.log(data);
                   addTaskSuccess = data.status === SUCCESS_STATUS;
+                  message = addTaskSuccess
+                    ? "Added task successfully"
+                    : `Failed to add task: ${data.message}`;
                   props.refreshTasks();
                 })
                 .catch((error) => {
                   addTaskSuccess = false;
+                  message = `Add task error: ${error}`;
                   console.log("Add task error:");
                   console.log(error);
                 })
@@ -38,6 +44,7 @@ export default function SettingPanel(props) {
                     newTaskLocation: s.newTaskLocation,
                     addTaskSuccess: addTaskSuccess,
                     showAddTaskResult: true,
+                    addTaskResultMessage: message,
                   }));
                 });
             }}
@@ -55,6 +62,7 @@ export default function SettingPanel(props) {
                 newTaskLocation: e.target.value,
                 addTaskSuccess: s.addTaskSuccess,
                 showAddTaskResult: s.showAddTaskResult,
+                addTaskResultMessage: s.addTaskResultMessage,
               }));
             }}
             placeholder="Task location"
@@ -84,11 +92,7 @@ export default function SettingPanel(props) {
               : "add-task-error-alert"
           }
         >
-          {state.showAddTaskResult
-            ? state.addTaskSuccess
-              ? "Added task successfully"
-              : "Failed to add task"
-            : ""}
+          {state.showAddTaskResult ? state.addTaskResultMessage : ""}
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { deleteTask, restartTask, startTask, pauseTask } from "../common/API";
 
 import "./TaskPanel.css";
 
@@ -145,7 +146,21 @@ function TaskItem(props) {
                 type="button"
                 className="btn btn-primary btn-sm"
                 id={props.taskData.paused ? "start-task-btn" : "pause-task-btn"}
-                onClick={(e) => {}}
+                onClick={(e) => {
+                  if (props.taskData.paused) {
+                    startTask(props.endpoint, props.taskData.task_id).then(
+                      (res) => {
+                        props.refreshTasks();
+                      }
+                    );
+                  } else {
+                    pauseTask(props.endpoint, props.taskData.task_id).then(
+                      (res) => {
+                        props.refreshTasks();
+                      }
+                    );
+                  }
+                }}
               >
                 {props.taskData.paused ? "Start" : "Pause"}
               </div>
@@ -155,7 +170,13 @@ function TaskItem(props) {
                 type="button"
                 className="btn btn-primary btn-sm"
                 id="restart-task-btn"
-                onClick={(e) => {}}
+                onClick={(e) => {
+                  restartTask(props.endpoint, props.taskData.task_id).then(
+                    (res) => {
+                      props.refreshTasks();
+                    }
+                  );
+                }}
               >
                 Restart
               </div>
@@ -165,7 +186,13 @@ function TaskItem(props) {
                 type="button"
                 className="btn btn-primary btn-sm"
                 id="delete-task-btn"
-                onClick={(e) => {}}
+                onClick={(e) => {
+                  deleteTask(props.endpoint, props.taskData.task_id).then(
+                    (res) => {
+                      props.refreshTasks();
+                    }
+                  );
+                }}
               >
                 Delete
               </div>
@@ -194,7 +221,9 @@ function TaskItem(props) {
   );
 }
 TaskItem.propTypes = {
-  task: PropTypes.object,
+  taskData: PropTypes.object,
+  endpoint: PropTypes.string,
+  refreshTasks: PropTypes.func,
 };
 
 export default function TaskPanel(props) {
@@ -205,12 +234,17 @@ export default function TaskPanel(props) {
           Task list
         </div>
         <div className="col-auto" id="refresh-count-label">
-          Refresh in 10 seconds
+          Auto refresh every 2 seconds
         </div>
       </div>
       <div className="sep-dark" />
-      {props.tasks.map((task) => (
-        <TaskItem taskData={task} key={"task" + task.task_id} />
+      {props.tasks.map((task, i) => (
+        <TaskItem
+          taskData={task}
+          endpoint={props.endpoint}
+          refreshTasks={props.refreshTasks}
+          key={"task" + task.task_id + i}
+        />
       ))}
     </div>
   );
@@ -218,4 +252,5 @@ export default function TaskPanel(props) {
 TaskPanel.propTypes = {
   tasks: PropTypes.array,
   refreshTasks: PropTypes.func,
+  endpoint: PropTypes.string,
 };

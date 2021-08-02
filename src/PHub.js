@@ -20,15 +20,33 @@ function PHub() {
   };
 
   const refreshTasks = () => {
-    lsTasks(state.endpoint).then((res) => {
-      const data = JSON.parse(res);
+    lsTasks(state.endpoint)
+      .then((res) => {
+        const data = JSON.parse(res);
+        data.data.sort((a, b) => b.task_id - a.task_id);
 
-      setState((s) => ({ tasks: data.data.reverse(), endpoint: s.endpoint }));
-    });
+        setState((s) => ({
+          tasks: data.data,
+          endpoint: s.endpoint,
+        }));
+        // console.log("Refreshed tasks");
+      })
+      .catch((error) => {
+        console.log("Failed to refresh tasks");
+        console.log(error);
+      });
   };
 
   useEffect(() => {
     refreshTasks();
+
+    const timer = setInterval(() => {
+      refreshTasks();
+    }, 2000);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   return (

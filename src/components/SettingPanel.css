@@ -25,7 +25,7 @@
 }
 
 #add-task-success-alert {
-  color: var(--cool-3);
+  color: var(--cool-4);
   font-weight: bold;
 }
 #add-task-error-alert {

@@ -155,7 +155,7 @@
 
 .progress-bar-block {
   height: 31px;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 .progress-bar-block-1 {
   background-color: var(--cool-2);

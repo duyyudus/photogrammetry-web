@@ -13,7 +13,11 @@ export default function BodySection(props) {
         updateEndpoint={props.updateEndpoint}
         refreshTasks={props.refreshTasks}
       />
-      <TaskPanel tasks={props.tasks} refreshTasks={props.refreshTasks} />
+      <TaskPanel
+        tasks={props.tasks}
+        refreshTasks={props.refreshTasks}
+        endpoint={props.endpoint}
+      />
     </div>
   );
 }
