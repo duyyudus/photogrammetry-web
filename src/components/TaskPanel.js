@@ -59,13 +59,19 @@ ProgressBar.propTypes = {
 };
 
 function CurrentStep(props) {
+  let message = "";
+  if (props.imgTotal > 0) {
+    message = `In progress, ${props.imgCompleted}/${props.imgTotal} images...`;
+  } else {
+    message = "In progress...";
+  }
   return (
     <div className="container">
-      <div className="row task-item-current-step" style={{ marginBottom: 5 }}>
+      <div className="row task-item-current-step" style={{ marginBottom: 10 }}>
         {STEP_NAME_MAP[props.step]}
       </div>
       <div className="row task-item-step-in-progress">
-        {props.stepInProgress ? "Current step is in progress..." : ""}
+        {props.stepInProgress ? message : ""}
       </div>
     </div>
   );
@@ -73,6 +79,8 @@ function CurrentStep(props) {
 CurrentStep.propTypes = {
   step: PropTypes.number,
   stepInProgress: PropTypes.bool,
+  imgCompleted: PropTypes.number,
+  imgTotal: PropTypes.number,
 };
 
 function TaskLocation(props) {
@@ -124,6 +132,8 @@ function TaskItem(props) {
               <CurrentStep
                 step={props.taskData.step}
                 stepInProgress={props.taskData.step_in_progress}
+                imgCompleted={props.taskData.image_progress.completed}
+                imgTotal={props.taskData.image_progress.total}
               />
             </div>
           </div>
