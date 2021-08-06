@@ -7,10 +7,17 @@ import "./SettingPanel.css";
 export default function SettingPanel(props) {
   const [state, setState] = useState({
     newTaskLocation: "",
-    addTaskSuccess: false,
-    showAddTaskResult: false,
-    addTaskResultMessage: "",
+    success: false,
+    status: "",
   });
+
+  useEffect(() => {
+    setState((s) => ({
+      newTaskLocation: s.newTaskLocation,
+      success: props.endpointError ? false : true,
+      status: props.endpointError,
+    }));
+  }, [props.endpointError]);
 
   return (
     <div className="container" id="setting-panel">
@@ -21,20 +28,20 @@ export default function SettingPanel(props) {
             className="btn btn-primary btn-sm"
             id="add-task-btn"
             onClick={(e) => {
-              let addTaskSuccess = false;
+              let success = false;
               let message = "";
               addTask(props.endpoint, state.newTaskLocation)
                 .then((res) => {
                   const data = JSON.parse(res);
                   // console.log(data);
-                  addTaskSuccess = data.status === SUCCESS_STATUS;
-                  message = addTaskSuccess
+                  success = data.status === SUCCESS_STATUS;
+                  message = success
                     ? "Added task successfully"
                     : `Failed to add task: ${data.message}`;
                   props.refreshTasks();
                 })
                 .catch((error) => {
-                  addTaskSuccess = false;
+                  success = false;
                   message = `Add task error: ${error}`;
                   console.log("Add task error:");
                   console.log(error);
@@ -42,9 +49,8 @@ export default function SettingPanel(props) {
                 .finally(() => {
                   setState((s) => ({
                     newTaskLocation: s.newTaskLocation,
-                    addTaskSuccess: addTaskSuccess,
-                    showAddTaskResult: true,
-                    addTaskResultMessage: message,
+                    success: success,
+                    status: message,
                   }));
                 });
             }}
@@ -60,9 +66,8 @@ export default function SettingPanel(props) {
             onChange={(e) => {
               setState((s) => ({
                 newTaskLocation: e.target.value,
-                addTaskSuccess: s.addTaskSuccess,
-                showAddTaskResult: s.showAddTaskResult,
-                addTaskResultMessage: s.addTaskResultMessage,
+                success: s.success,
+                status: s.status,
               }));
             }}
             placeholder="Task location"
@@ -85,14 +90,11 @@ export default function SettingPanel(props) {
 
       <div className="row" style={{ marginTop: 10 }}>
         <div
-          className="col-auto"
-          id={
-            state.addTaskSuccess
-              ? "add-task-success-alert"
-              : "add-task-error-alert"
-          }
+          className={`col-auto ${
+            state.success ? "success-alert" : "error-alert"
+          }`}
         >
-          {state.showAddTaskResult ? state.addTaskResultMessage : ""}
+          {state.status}
         </div>
       </div>
     </div>
@@ -102,4 +104,5 @@ SettingPanel.propTypes = {
   endpoint: PropTypes.string,
   updateEndpoint: PropTypes.func,
   refreshTasks: PropTypes.func,
+  endpointError: PropTypes.string,
 };

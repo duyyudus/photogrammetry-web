@@ -24,11 +24,11 @@
   border-width: 2px !important;
 }
 
-#add-task-success-alert {
+.success-alert {
   color: var(--cool-4);
   font-weight: bold;
 }
-#add-task-error-alert {
+.error-alert {
   color: var(--warm-6);
   font-weight: bold;
 }

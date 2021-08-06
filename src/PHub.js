@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { lsTasks } from "./common/API";
 
@@ -13,13 +13,18 @@ function PHub() {
   const [state, setState] = useState({
     tasks: [],
     endpoint: DEF_ENDPOINT,
+    endpointError: "",
   });
 
   const updateEndpoint = (endpoint) => {
-    setState((s) => ({ tasks: s.tasks, endpoint: endpoint }));
+    setState((s) => ({
+      tasks: s.tasks,
+      endpoint: endpoint,
+      endpointError: s.endpointError,
+    }));
   };
 
-  const refreshTasks = () => {
+  const refreshTasks = useCallback(() => {
     lsTasks(state.endpoint)
       .then((res) => {
         const data = JSON.parse(res);
@@ -28,18 +33,24 @@ function PHub() {
         setState((s) => ({
           tasks: data.data,
           endpoint: s.endpoint,
+          endpointError: "",
         }));
-        // console.log("Refreshed tasks");
       })
       .catch((error) => {
-        console.log("Failed to refresh tasks");
-        console.log(error);
+        setState((s) => ({
+          tasks: s.tasks,
+          endpoint: s.endpoint,
+          endpointError: `Server connection error: ${error.toString()}`,
+        }));
+        console.log(`Failed to refresh tasks: ${error}`);
       });
-  };
+  }, [state.endpoint]);
 
   useEffect(() => {
     refreshTasks();
+  }, [refreshTasks]);
 
+  useEffect(() => {
     const timer = setInterval(() => {
       refreshTasks();
     }, 2000);
@@ -47,7 +58,7 @@ function PHub() {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [refreshTasks, state]);
 
   return (
     <div className="container phub">
@@ -57,6 +68,7 @@ function PHub() {
         endpoint={state.endpoint}
         updateEndpoint={updateEndpoint}
         refreshTasks={refreshTasks}
+        endpointError={state.endpointError}
       />
     </div>
   );

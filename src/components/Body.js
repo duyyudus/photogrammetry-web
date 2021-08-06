@@ -12,6 +12,7 @@ export default function BodySection(props) {
         endpoint={props.endpoint}
         updateEndpoint={props.updateEndpoint}
         refreshTasks={props.refreshTasks}
+        endpointError={props.endpointError}
       />
       <TaskPanel
         tasks={props.tasks}
@@ -26,4 +27,5 @@ BodySection.propTypes = {
   updateEndpoint: PropTypes.func,
   tasks: PropTypes.array,
   refreshTasks: PropTypes.func,
+  endpointError: PropTypes.string,
 };
