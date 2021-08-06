@@ -1,4 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"); */
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url(./fonts/Roboto-Light.ttf) format("truetype");
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
 @import "./common/css/common.css";
 
 body {
