@@ -1,3 +1,17 @@
 # Photogrammetry Hub
 
 Web GUI for Photogrammetry Service
+
+image::docs/mockup.png[]
+
+Install dependencies
+
+`yarn install`
+
+Run Dev mode
+
+`yarn start`
+
+Production build
+
+`yarn build`
