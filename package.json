@@ -1,6 +1,7 @@
 {
   "name": "photogrammetry-hub",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@popperjs/core": "^2.9.2",
