@@ -2,9 +2,7 @@
 
 @font-face {
   font-family: "Roboto";
-  src: local("Roboto"), url(./fonts/Roboto-Light.ttf) format("truetype");
-  /* other formats include: 'woff2', 'truetype, 'opentype',
-                            'embedded-opentype', and 'svg' */
+  src: url(./fonts/Roboto-Light.ttf) format("truetype");
 }
 
 @import "./common/css/common.css";
